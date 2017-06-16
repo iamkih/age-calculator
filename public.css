@@ -1,0 +1,5 @@
+body { background-color: #eee !important; }
+.container { padding: 50px; }
+.wrapper { background: #eee; height: 100vh;}
+.content-area { padding: 50px; font-size: 15px;}
+.btn-group.bootstrap-select {padding: 3px;}
