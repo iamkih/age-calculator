@@ -1,2 +1,2 @@
 # age-calculator
-Calculate Age.
+A simple tool to calculate age. 
