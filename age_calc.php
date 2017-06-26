@@ -90,7 +90,7 @@
 	<?php
 	if(isset($_POST['formSubmit']))
 	{
-		if((empty($_POST['selectYear'])) || ($_POST['selectDay']=="none") || ($_POST['selectMonth']=="none") || ($_POST['selectDay']=="29" && $_POST['selectMonth']== "02" && date('L', mktime(1, 1, 1, 1, 1, $_POST['selectYear'])) != 1))
+		if((empty($_POST['selectYear'])) || ($_POST['selectDay']=="none") || ($_POST['selectMonth']=="none") || ($_POST['selectDay']=="29" && $_POST['selectMonth']== "02" && date('L', mktime(1, 1, 1, 1, 1, $_POST['selectYear'])) != 1) || ($_POST['selectDay'] > "29" && $_POST['selectMonth']== "02"))
 		{
 			$errorMsg= "You didn't select an option/ Selection is wrong.";
 			echo $errorMsg;
