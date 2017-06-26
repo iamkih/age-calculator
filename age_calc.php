@@ -90,51 +90,50 @@
 	<?php
 	if(isset($_POST['formSubmit']))
 	{
-		$getDay= $_POST['selectDay'];
-		$getMonth= $_POST['selectMonth'];
-		$getYear= $_POST['selectYear'];
-		$birthDate= $_POST['selectDay'].$_POST['selectMonth'].$_POST['selectYear'];
-
-		if(!isset($_POST['selectDay']) || !isset($_POST['selectMonth']) || !isset($_POST['selectYear']) )
+		if((empty($_POST['selectYear'])) || ($_POST['selectDay']=="none") || ($_POST['selectMonth']=="none") || ($_POST['selectDay']=="29" && $_POST['selectMonth']== "02" && date('L', mktime(1, 1, 1, 1, 1, $_POST['selectYear'])) != 1))
 		{
-			$errorMsg= "You didn't select an option";
+			$errorMsg= "You didn't select an option/ Selection is wrong.";
 			echo $errorMsg;
-		} 
+		}
 		else
 		{
+			$getDay= $_POST['selectDay'];
+			$getMonth= $_POST['selectMonth'];
+			$getYear= $_POST['selectYear'];
+			$birthDate= $_POST['selectDay'].$_POST['selectMonth'].$_POST['selectYear'];
 
-		echo "<p>Your Date Of Birth Is: <b>$getDay</b>, <b>$getMonth</b>, <b>$getYear</b>.</p>";
+			echo "<p>Your Date Of Birth Is: <b>$getDay</b>, <b>$getMonth</b>, <b>$getYear</b>.</p>";
 
-		$currentDay= date('d');
-		$currentMonth= date('m');
-		$currentYear= date('Y');
+			$currentDay= date('d');
+			$currentMonth= date('m');
+			$currentYear= date('Y');
 
-		$year= $currentYear- $getYear;
-		$month= $currentMonth - $getMonth;
-		$day= $currentDay - $getDay;
-			if($month <= 0 && $day<0)
-			{
-				$year--;
-				$month+=11;
-				$day+= getTotalDaysOfMonth();
-			}
-			if($month>0 && $day<0)
-			{
-				$month-=1;
-				$day+= getTotalDaysOfMonth();
-			}
-			if($month<0 && $day>=0)
-			{
-				$year--;
-				$month+=12;
-			}
-			if($_POST['selectMonth']== "02" && $day<0 )
-			{
-				$day+= getTotalDaysOfMonth();
-			}
-			echo "<p>Your Age Is: <b>$year Year</b> , <b>$month Months</b> , <b>$day Days</b>.</p>";
-		}	
-	} 
+			$year= $currentYear- $getYear;
+			$month= $currentMonth - $getMonth;
+			$day= $currentDay - $getDay;
+				if($month <= 0 && $day<0)
+				{
+					$year--;
+					$month+=11;
+					$day+= getTotalDaysOfMonth();
+				}
+				if($month>0 && $day<0)
+				{
+					$month-=1;
+					$day+= getTotalDaysOfMonth();
+				}
+				if($month<0 && $day>=0)
+				{
+					$year--;
+					$month+=12;
+				}
+				if($_POST['selectMonth']== "02" && $day<0 )
+				{
+					$day+= getTotalDaysOfMonth();
+				}
+				echo "<p>Your Age Is: <b>$year Year</b> , <b>$month Months</b> , <b>$day Days</b>.</p>";	
+		}
+	}
 	?>
 	</div>
 		</div>
